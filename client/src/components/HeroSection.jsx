@@ -42,7 +42,7 @@ export default function HeroSection() {
             <img
               src={src}
               alt={alt}
-              className="w-full h-full object-cover md:grayscale"
+              className="w-full h-full object-cover transition-all duration-1000 grayscale-0 md:grayscale hover:grayscale-0"
             />
           </div>
         ))}
