@@ -1,33 +1,48 @@
+import { useState, useEffect, useCallback } from 'react'
+import slide1 from '../assets/Images/front_page_sliding/01.jpg'
+import slide2 from '../assets/Images/front_page_sliding/02.jpeg'
+import slide3 from '../assets/Images/front_page_sliding/03.jpg'
+import slide4 from '../assets/Images/front_page_sliding/04.jpg'
+
 const CAROUSEL_IMAGES = [
-  {
-    src: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBCrH0G3qxcoUkLrkh5JCQEW3595HKUyAq1z3PTq1JWuYQIcbkdzVOcorg3PA0X7heVCgw02ndMNSZ8wt1l_i0rwlvGpsVHRTu7KuzQTxIIJPHnLz4dTM1iYY5xqpYJkkj7pp7vzmA655lGNZh8oewYUm3N6HdslxlI_CYPqzXAPvwT-n2aPpVKQV-qY15-5l7djULS0cXifYlmUu6BjbpwkxqmGNsq4YbKhMa1qVJ5yXo4cBdDgAB7CQKT7Wi4VY19rU9XXL3WAj8',
-    alt: 'Architectural Texture',
-  },
-  {
-    src: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBaAYklfMlUNFKtEa_5pgeWCfLOvjwLfQ0RsexbAVGJiifnOJzS1q4AhP6f5t3D0Y5R9Vl2XTBclsYc6_kjzPJGB9fx49t-6cS6wDZ1rWOmY-TYPdaGTIUWAorB0Mchn5zaYx-WF2k4o92Qgx_VBFqsQpNImu8Can46qCWZK3lDO06tYBGJ4LVv2G1jVGoOWQbd2-UATyiEjE2PyeCP0AW0XDK2OsWWJpcUKasxKkJcaWfOeajHQowo6tk3xxbbLU5Hi4duBZceYRA',
-    alt: 'Monolithic Facade',
-  },
-  {
-    src: 'https://lh3.googleusercontent.com/aida-public/AB6AXuC9PBCXhHKSkM9IS-rg_lERE3GHeXXLfdD_Day5cDutpk32SVTHKeAUXC2f1G1Tk8dnzFrjAqKHxWhn6H9ORJCPg-yZiv9ggCqdZp8shDC5_LFr3S1GG2Nv4yAEyHsxeucKdI3o_G9W7JVKb0b9bYSTr_wHbY45Ra9rF9FVThd83YFNlnMvIrWUwBjaA31yuU_86xDETmvAtV4gunVw1_o071hOlT1klnv0jrDue5wFPDlbybIPna7ZcCqHmfI0mjPJfuNSpIUvH5k',
-    alt: 'Concrete Structure',
-  },
-  {
-    src: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDPjOA3rWCLMtHBfS05zqmoYgGIhjoh8-LePwIOReeBDf4ixo1U2GoYsszgIwknLQT8a7qrqCJZ0xxFe4qNAYQBXjxsIHX2Vp2CCaQRhDFe8Ol8sxF9QEhL4ut_5yWHZqsGHp3EcIMgape-3lXLcWCuwRI4NYEHwk90ZHedRM-y5dU6rFftJ3GuTwsmfTRLKT-d-F5zFnqZY7xwuSV-i-5_phrzGkGGbIDq7eljeWDuI8UQkQr76fKB_W1FVACVntnT2D3GNY7gkMs',
-    alt: 'Desert Minimalist',
-  },
+  { src: slide1, alt: 'Architectural Texture' },
+  { src: slide2, alt: 'Monolithic Facade' },
+  { src: slide3, alt: 'Concrete Structure' },
+  { src: slide4, alt: 'Desert Minimalist' },
 ]
 
 export default function HeroSection() {
+  const [currentIndex, setCurrentIndex] = useState(0)
+
+  const handleNext = useCallback(() => {
+    setCurrentIndex((prev) => (prev + 1) % CAROUSEL_IMAGES.length)
+  }, [])
+
+  const handlePrev = useCallback(() => {
+    setCurrentIndex((prev) => (prev - 1 + CAROUSEL_IMAGES.length) % CAROUSEL_IMAGES.length)
+  }, [])
+
+  // Auto-slide every 5 seconds
+  useEffect(() => {
+    const interval = setInterval(handleNext, 5000)
+    return () => clearInterval(interval)
+  }, [handleNext])
+
   return (
     <section className="min-h-screen flex flex-col justify-center px-8 pt-32 pb-20 relative overflow-hidden bg-[#EAE7E1]">
       {/* Carousel Background */}
       <div className="absolute inset-0 z-0">
-        {CAROUSEL_IMAGES.map(({ src, alt }) => (
-          <div key={alt} className="carousel-item">
+        {CAROUSEL_IMAGES.map(({ src, alt }, index) => (
+          <div
+            key={alt}
+            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+              index === currentIndex ? 'opacity-45' : 'opacity-0'
+            }`}
+          >
             <img
               src={src}
               alt={alt}
-              className="w-full h-full object-cover md:grayscale opacity-20"
+              className="w-full h-full object-cover md:grayscale"
             />
           </div>
         ))}
@@ -35,12 +50,26 @@ export default function HeroSection() {
         <div className="absolute inset-0 bg-gradient-to-t from-[#EAE7E1] via-transparent to-[#EAE7E1]/80 pointer-events-none" />
       </div>
 
-      {/* Carousel arrows */}
-      <button className="absolute inset-y-0 left-0 z-20 flex items-center px-4 md:px-8 p-2 text-[#1A1A1A]/20 hover:text-[#C05A3E] transition-colors duration-300">
-        <span className="material-symbols-outlined text-4xl font-extralight">chevron_left</span>
+      {/* Carousel Controls */}
+      <button
+        onClick={handlePrev}
+        className="absolute inset-y-0 left-0 z-20 flex items-center px-4 md:px-8 group"
+      >
+        <div className="p-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[#1A1A1A]/60 group-hover:text-[#C05A3E] group-hover:bg-white/30 transition-all duration-300">
+          <span className="material-symbols-outlined text-4xl font-extralight group-hover:scale-110 transition-transform">
+            chevron_left
+          </span>
+        </div>
       </button>
-      <button className="absolute inset-y-0 right-0 z-20 flex items-center px-4 md:px-8 p-2 text-[#1A1A1A]/20 hover:text-[#C05A3E] transition-colors duration-300">
-        <span className="material-symbols-outlined text-4xl font-extralight">chevron_right</span>
+      <button
+        onClick={handleNext}
+        className="absolute inset-y-0 right-0 z-20 flex items-center px-4 md:px-8 group"
+      >
+        <div className="p-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[#1A1A1A]/60 group-hover:text-[#C05A3E] group-hover:bg-white/30 transition-all duration-300">
+          <span className="material-symbols-outlined text-4xl font-extralight group-hover:scale-110 transition-transform">
+            chevron_right
+          </span>
+        </div>
       </button>
 
       {/* Hero Content */}
