@@ -1,1 +1,125 @@
 @import "tailwindcss";
+
+@theme {
+  --color-terracotta: #C05A3E;
+  --color-terracotta-dark: #A54B32;
+  --color-primary: #C05A3E;
+  --color-on-primary: #FFFFFF;
+  --color-background: #FAFAF7;
+  --color-surface: #EAE7E1;
+  --color-surface-variant: #DEDAD2;
+  --color-on-surface: #1A1A1A;
+  --color-on-surface-variant: #666666;
+  --color-outline: #E2E2E2;
+
+  --font-headline: "Playfair Display", serif;
+  --font-body: "Inter", sans-serif;
+  --font-label: "Inter", sans-serif;
+
+  --radius: 0px;
+  --radius-lg: 0px;
+  --radius-xl: 0px;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: #FAFAF7;
+  /* Custom cursor — hide the system cursor globally */
+  cursor: none;
+  font-family: "Inter", sans-serif;
+}
+
+/* Hide system cursor on all interactive elements too */
+a, button, input, textarea, [role="button"] {
+  cursor: none;
+}
+
+::selection {
+  background-color: #C05A3E;
+  color: white;
+}
+
+/* Material Symbols icon font variation settings */
+.material-symbols-outlined {
+  font-variation-settings: "FILL" 0, "wght" 200, "GRAD" 0, "opsz" 24;
+  font-family: "Material Symbols Outlined";
+  user-select: none;
+}
+
+.grain-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.04;
+  background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD_NWZov2X0Qan-1ilo-58sc13ZSwWHw4-3Sr8OhcnZasnXB12CsHw5af339AbGfi2Z6jVGHRSODSoidEfidlnrmgBtwTik9HsHzrYwZr_sUpWXpxjLAOs9kLUJ5w-Gr_nMoukBI4Fv5fgw8o3FM5FMFoL_yUAQ4huLRNn-HYyvmyi4kylcepGNcIL5T4SWih_Nh8r5mkzOg6jEkXN4TYxKnFf8EnfwCV3HKeWzHu7bcEKXlCYVT6QLDWyOYomG2xwVafuDpj8WfHc");
+}
+
+/* Custom circular cursor styles */
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: #C05A3E;
+  pointer-events: none;
+  z-index: 99999;
+  transform: translate(-50%, -50%);
+  transition: transform 0.1s ease, width 0.25s ease, height 0.25s ease, background-color 0.25s ease, opacity 0.25s ease;
+  mix-blend-mode: multiply;
+}
+
+.custom-cursor.expanded {
+  width: 48px;
+  height: 48px;
+  background-color: #C05A3E;
+  opacity: 0.3;
+}
+
+.custom-cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid #C05A3E;
+  pointer-events: none;
+  z-index: 99998;
+  transform: translate(-50%, -50%);
+  transition: transform 0.18s ease, width 0.3s ease, height 0.3s ease, opacity 0.3s ease;
+  opacity: 0.5;
+}
+
+.custom-cursor-ring.expanded {
+  width: 64px;
+  height: 64px;
+  opacity: 0;
+}
+
+@keyframes carousel-fade {
+  0%, 25%  { opacity: 1; visibility: visible; }
+  30%, 100% { opacity: 0; visibility: hidden; }
+}
+
+.carousel-item {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 2s ease-in-out;
+  animation: carousel-fade 12s infinite;
+}
+.carousel-item:nth-child(1) { animation-delay: 0s; }
+.carousel-item:nth-child(2) { animation-delay: 3s; }
+.carousel-item:nth-child(3) { animation-delay: 6s; }
+.carousel-item:nth-child(4) { animation-delay: 9s; }
+

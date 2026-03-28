@@ -1,33 +1,38 @@
-import { useState } from 'react'
-import { Home } from 'lucide-react'
+import './index.css'
+import Navbar from './components/Navbar'
+import HeroSection from './components/HeroSection'
+import ProjectsSection from './components/ProjectsSection'
+import AboutSection from './components/AboutSection'
+import ExpertiseSection from './components/ExpertiseSection'
+import VisualStatement from './components/VisualStatement'
+import ContactSection from './components/ContactSection'
+import Footer from './components/Footer'
+import CustomCursor from './components/CustomCursor'
 
-function App() {
-  const [count, setCount] = useState(0)
-
+export default function App() {
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col justify-center items-center text-gray-900">
-      <div className="bg-white p-8 rounded-2xl shadow-lg flex flex-col items-center gap-6 max-w-sm w-full">
-        <div className="p-4 bg-indigo-100 text-indigo-600 rounded-full">
-          <Home size={48} />
-        </div>
-        
-        <h1 className="text-3xl font-bold bg-gradient-to-r from-indigo-500 to-purple-600 bg-clip-text text-transparent">
-          Hello World!
-        </h1>
-        
-        <p className="text-gray-600 text-center text-sm">
-          Welcome to your new React + Vite + Tailwind CSS application.
-        </p>
+    <div className="bg-[#FAFAF7] text-[#1A1A1A]">
+      {/* Custom circular cursor */}
+      <CustomCursor />
 
-        <button
-          className="mt-4 px-6 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-medium transition-colors shadow-sm active:scale-95"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Clicked {count} times
-        </button>
-      </div>
+      {/* Grain Overlay */}
+      <div className="grain-overlay" aria-hidden="true" />
+
+      {/* Navigation */}
+      <Navbar />
+
+      {/* Page Content */}
+      <main>
+        <HeroSection />
+        <ProjectsSection />
+        <AboutSection />
+        <ExpertiseSection />
+        <VisualStatement />
+        <ContactSection />
+      </main>
+
+      {/* Footer */}
+      <Footer />
     </div>
   )
 }
-
-export default App
