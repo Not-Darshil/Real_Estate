@@ -1,35 +1,67 @@
+import cabin_co from '../assets/Images/COMMERCIAL/CABIN & CO/H1_Interactive LightMix copy.jpg'
+import spal_office from '../assets/Images/COMMERCIAL/S PAL BUSINESS PARK OFFICE GURGAON/CONFRENCE.jpg'
+import primark_office from '../assets/Images/COMMERCIAL/primark office bhopal/C6_Interactive LightMix.jpg'
+import hotel_badaun from '../assets/Images/HOSPITALITY/SUNEL GUPTA HOTEL BADAUN/K3_Interactive LightMix copy.jpg'
+import farm_house from '../assets/Images/RESIDENCE/FARM HOUSE/c4_Interactive LightMix.jpg'
+import farm_house_interior from '../assets/Images/RESIDENCE/FARM HOUSE INTERIOR/C2_Interactive LightMix.jpg'
+import looks_salon from '../assets/Images/RETAIL/LOOKS SALON/1.jpg'
+
 const PROJECTS = [
   {
     id: 1,
-    title: 'Urban Residence',
-    location: 'London, UK',
-    type: 'Residential',
+    title: 'CABIN & CO',
+    location: 'Office / Commercial',
+    type: 'Workspace',
+    src: cabin_co,
     offset: false,
-    src: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBaAYklfMlUNFKtEa_5pgeWCfLOvjwLfQ0RsexbAVGJiifnOJzS1q4AhP6f5t3D0Y5R9Vl2XTBclsYc6_kjzPJGB9fx49t-6cS6wDZ1rWOmY-TYPdaGTIUWAorB0Mchn5zaYx-WF2k4o92Qgx_VBFqsQpNImu8Can46qCWZK3lDO06tYBGJ4LVv2G1jVGoOWQbd2-UATyiEjE2PyeCP0AW0XDK2OsWWJpcUKasxKkJcaWfOeajHQowo6tk3xxbbLU5Hi4duBZceYRA',
   },
   {
     id: 2,
-    title: 'Concrete Pavilion',
-    location: 'Berlin, DE',
-    type: 'Cultural',
+    title: 'S PAL BUSINESS PARK',
+    location: 'Gurgaon / Commercial',
+    type: 'Business Park',
+    src: spal_office,
     offset: true,
-    src: 'https://lh3.googleusercontent.com/aida-public/AB6AXuC9PBCXhHKSkM9IS-rg_lERE3GHeXXLfdD_Day5cDutpk32SVTHKeAUXC2f1G1Tk8dnzFrjAqKHxWhn6H9ORJCPg-yZiv9ggCqdZp8shDC5_LFr3S1GG2Nv4yAEyHsxeucKdI3o_G9W7JVKb0b9bYSTr_wHbY45Ra9rF9FVThd83YFNlnMvIrWUwBjaA31yuU_86xDETmvAtV4gunVw1_o071hOlT1klnv0jrDue5wFPDlbybIPna7ZcCqHmfI0mjPJfuNSpIUvH5k',
   },
   {
     id: 3,
-    title: 'Minimal Office',
-    location: 'Tokyo, JP',
-    type: 'Workplace',
+    title: 'PRIMARK OFFICE',
+    location: 'Bhopal / Commercial',
+    type: 'Office Interior',
+    src: primark_office,
     offset: false,
-    src: 'https://lh3.googleusercontent.com/aida-public/AB6AXuC1alMuzQ1li4rk1clQyZEuiUjdz-5uDQ_nwkNA5Ghfqutej0GXeWpL2XEejDJxSMp48HjbMaYkNHPlOMIhI4kKS2kxrA74FOqVYmsZavY4Mn5yU48nZ0fLFLtxUDQZ-2rsdl4tt1sqjGAzwU7EXJosrhmqkMY16OoPuE9MiD5KAWr2lyzb8eSd844v28ALIXUh4LPnUobMugp4FWuziLWlusn4HlpecID4QYCCLzLKG9ZdxFR38dimUmh0pVHCtrGaJM3vzz8KJHs',
   },
   {
     id: 4,
-    title: 'Desert Villa',
-    location: 'Joshua Tree, US',
-    type: 'Retreat',
+    title: 'SUNEL GUPTA HOTEL',
+    location: 'Badaun / Hospitality',
+    type: 'Institutional',
+    src: hotel_badaun,
     offset: true,
-    src: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDPjOA3rWCLMtHBfS05zqmoYgGIhjoh8-LePwIOReeBDf4ixo1U2GoYsszgIwknLQT8a7qrqCJZ0xxFe4qNAYQBXjxsIHX2Vp2CCaQRhDFe8Ol8sxF9QEhL4ut_5yWHZqsGHp3EcIMgape-3lXLcWCuwRI4NYEHwk90ZHedRM-y5dU6rFftJ3GuTwsmfTRLKT-d-F5zFnqZY7xwuSV-i-5_phrzGkGGbIDq7eljeWDuI8UQkQr76fKB_W1FVACVntnT2D3GNY7gkMs',
+  },
+  {
+    id: 5,
+    title: 'FARM HOUSE',
+    location: 'Residence',
+    type: 'Modern Living',
+    src: farm_house,
+    offset: false,
+  },
+  {
+    id: 6,
+    title: 'FARM HOUSE INTERIOR',
+    location: 'Residence',
+    type: 'Interior Design',
+    src: farm_house_interior,
+    offset: true,
+  },
+  {
+    id: 7,
+    title: 'LOOKS SALON',
+    location: 'Retail',
+    type: 'Beauty & Wellness',
+    src: looks_salon,
+    offset: false,
   },
 ]
 
@@ -45,7 +77,7 @@ function ProjectCard({ title, location, type, src, offset }) {
       </div>
       <div className="flex justify-between items-start">
         <div>
-          <h3 className="font-['Playfair_Display'] text-2xl text-[#1A1A1A] mb-2">{title}</h3>
+          <h3 className="font-['Playfair_Display'] text-2xl text-[#1A1A1A] mb-2 uppercase">{title}</h3>
           <p className="font-[Inter] text-[10px] uppercase tracking-widest text-[#666666]">
             {location} / {type}
           </p>
@@ -68,7 +100,7 @@ export default function ProjectsSection() {
             Selected Works
           </h2>
           <span className="font-[Inter] text-[10px] uppercase tracking-[0.3em] text-neutral-400">
-            Vol. 01 — 2024
+            Portfolio — 2024
           </span>
         </div>
 
