@@ -176,7 +176,7 @@ export default function ProjectsSection() {
               onClick={() => setShowAll(true)}
               className="px-12 py-5 border border-on-surface/20 text-on-surface font-[Inter] text-xs uppercase tracking-[0.4em] hover:bg-[#C05A3E] hover:text-white hover:border-[#C05A3E] transition-all duration-500 font-bold"
             >
-              Archived Projects +
+              SLA Projects +
             </button>
           </div>
         )}

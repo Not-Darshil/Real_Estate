@@ -1,17 +1,20 @@
+import { Routes, Route } from 'react-router-dom'
 import './index.css'
 import Navbar from './components/Navbar'
-import HeroSection from './components/HeroSection'
-import ProjectsSection from './components/ProjectsSection'
-import AboutSection from './components/AboutSection'
-import ExpertiseSection from './components/ExpertiseSection'
-import VisualStatement from './components/VisualStatement'
-import ContactSection from './components/ContactSection'
 import Footer from './components/Footer'
 import CustomCursor from './components/CustomCursor'
+import ScrollToTop from './components/ScrollToTop'
+
+// Pages
+import Home from './pages/Home'
+import About from './pages/About'
+import Work from './pages/Work'
+import Contact from './pages/Contact'
 
 export default function App() {
   return (
-    <div className="bg-[#FAFAF7] text-[#1A1A1A]">
+    <div className="bg-[#FAFAF7] text-[#1A1A1A] min-h-screen flex flex-col">
+      <ScrollToTop />
       {/* Custom circular cursor */}
       <CustomCursor />
 
@@ -22,13 +25,13 @@ export default function App() {
       <Navbar />
 
       {/* Page Content */}
-      <main>
-        <HeroSection />
-        <ProjectsSection />
-        <AboutSection />
-        <ExpertiseSection />
-        <VisualStatement />
-        <ContactSection />
+      <main className="flex-grow">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/work" element={<Work />} />
+          <Route path="/contact" element={<Contact />} />
+        </Routes>
       </main>
 
       {/* Footer */}

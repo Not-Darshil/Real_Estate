@@ -12,7 +12,7 @@ export default function AboutSection() {
           <div className="aspect-[3/4] bg-[#FAFAF7] relative overflow-hidden">
             <img
               src="https://lh3.googleusercontent.com/aida-public/AB6AXuA4fSnqzFCKunfZIYxtp2I_xj-DsfS9qresvQ0uldU8CYREnIsW7PUfOai8bR46g4tHx33oCVZQowyRoOFRhnx3BfeSN8krC6dlMgXpAasE7fkIYsJw8w6zFX95KkjHKIC8xdfgFaIMxrUxlMsHwgoc-a1wS-hvsYo4MM8XQvWuZ4WHi-D8thPtmbIoZ-pS2LUcS4hur9JzxNvRlLayEI0SGxrJvYu4XyJ7cZiguRuPSyyZZtk5h1f01POjf4oUZHyhmqHghVah7F4"
-              alt="About Archive"
+              alt="About SLA"
               className="w-full h-full object-cover md:grayscale"
             />
             <div className="absolute inset-0 bg-[#C05A3E]/5 mix-blend-overlay" />
@@ -28,7 +28,7 @@ export default function AboutSection() {
             Architecture is the language of weight and light.
           </h2>
           <p className="text-[#666666] text-lg leading-loose mb-12">
-            ARCHIVE was founded on the principle that spaces should not just
+            SLA was founded on the principle that spaces should not just
             exist, but perform a silent service to their inhabitants. We strip
             away the unnecessary to reveal the core essence of
             materiality—concrete, wood, steel, and light.

@@ -1,33 +1,41 @@
+import { Link, useLocation } from 'react-router-dom'
+
 const NAV_LINKS = [
-  { href: '#projects', label: 'Projects', active: true },
-  { href: '#about', label: 'About' },
-  { href: '#contact', label: 'Contact' },
+  { path: '/', label: 'Home' },
+  { path: '/work', label: 'Work' },
+  { path: '/about', label: 'About' },
+  { path: '/contact', label: 'Contact' },
 ]
 
 export default function Navbar() {
+  const location = useLocation();
+
   return (
     <header className="bg-[#FAFAF7]/80 backdrop-blur-xl fixed top-0 w-full z-50 border-b border-black/5">
       <nav className="flex justify-between items-center px-8 py-6 w-full max-w-screen-2xl mx-auto">
         {/* Logo */}
-        <div className="text-xl font-black tracking-tighter text-[#1A1A1A]">
-          ARCHIVE
-        </div>
+        <Link to="/" className="text-xl font-black tracking-tighter text-[#1A1A1A] no-underline">
+          SLA
+        </Link>
 
         {/* Desktop Links */}
         <div className="hidden md:flex items-center gap-12">
-          {NAV_LINKS.map(({ href, label, active }) => (
-            <a
-              key={label}
-              href={href}
-              className={`font-[Inter] text-xs tracking-widest uppercase transition-colors ${
-                active
-                  ? 'text-[#C05A3E] border-b border-[#C05A3E] pb-1'
-                  : 'text-neutral-500 hover:text-[#1A1A1A]'
-              }`}
-            >
-              {label}
-            </a>
-          ))}
+          {NAV_LINKS.map(({ path, label }) => {
+            const isActive = location.pathname === path;
+            return (
+              <Link
+                key={label}
+                to={path}
+                className={`font-[Inter] text-xs tracking-widest uppercase transition-colors no-underline ${
+                  isActive
+                    ? 'text-[#C05A3E] border-b border-[#C05A3E] pb-1'
+                    : 'text-neutral-500 hover:text-[#1A1A1A]'
+                }`}
+              >
+                {label}
+              </Link>
+            );
+          })}
         </div>
 
         {/* Mobile menu icon */}

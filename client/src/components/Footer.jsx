@@ -20,10 +20,10 @@ export default function Footer() {
         {/* Brand */}
         <div className="space-y-6">
           <div className="text-sm font-bold text-[#1A1A1A] uppercase tracking-widest">
-            ARCHIVE
+            SLA
           </div>
           <p className="font-[Inter] text-[10px] uppercase tracking-[0.2em] text-neutral-400 max-w-xs leading-relaxed">
-            © 2024 THE MONOLITHIC ARCHIVE. ALL RIGHTS RESERVED.
+            © 2024 THE MONOLITHIC SLA. ALL RIGHTS RESERVED.
           </p>
         </div>
 

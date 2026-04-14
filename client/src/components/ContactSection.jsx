@@ -3,8 +3,8 @@ import { useState } from 'react'
 const CONTACT_INFO = [
   {
     label: 'New Inquiries',
-    value: 'hello@archive.studio',
-    href: 'mailto:hello@archive.studio',
+    value: 'hello@SLA.studio',
+    href: 'mailto:hello@SLA.studio',
     isLink: true,
   },
   {
