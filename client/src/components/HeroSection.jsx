@@ -1,4 +1,14 @@
-import { useState, useEffect, useCallback } from 'react'
+import * as React from 'react'
+import Autoplay from 'embla-carousel-autoplay'
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselPrevious,
+  CarouselNext,
+} from './ui/carousel'
+import { Link } from 'react-router-dom'
+
 import slide1 from '../assets/Images/front_page_sliding/01.jpg'
 import slide2 from '../assets/Images/front_page_sliding/02.jpeg'
 import slide3 from '../assets/Images/front_page_sliding/03.jpg'
@@ -12,98 +22,62 @@ const CAROUSEL_IMAGES = [
 ]
 
 export default function HeroSection() {
-  const [currentIndex, setCurrentIndex] = useState(0)
-
-  const handleNext = useCallback(() => {
-    setCurrentIndex((prev) => (prev + 1) % CAROUSEL_IMAGES.length)
-  }, [])
-
-  const handlePrev = useCallback(() => {
-    setCurrentIndex((prev) => (prev - 1 + CAROUSEL_IMAGES.length) % CAROUSEL_IMAGES.length)
-  }, [])
-
-  // Auto-slide every 5 seconds
-  useEffect(() => {
-    const interval = setInterval(handleNext, 5000)
-    return () => clearInterval(interval)
-  }, [handleNext])
+  const plugin = React.useRef(
+    Autoplay({ delay: 5000, stopOnInteraction: true })
+  )
 
   return (
-    <section className="min-h-screen flex flex-col justify-center px-8 pt-32 pb-20 relative overflow-hidden bg-[#EAE7E1]">
-      {/* Carousel Background */}
-      <div className="absolute inset-0 z-0">
-        {CAROUSEL_IMAGES.map(({ src, alt }, index) => (
-          <div
-            key={alt}
-            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
-              index === currentIndex ? 'opacity-45' : 'opacity-0'
-            }`}
-          >
-            <img
-              src={src}
-              alt={alt}
-              className="w-full h-full object-cover transition-all duration-1000 grayscale-0 md:grayscale hover:grayscale-0"
-            />
-          </div>
-        ))}
-        {/* Gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#EAE7E1] via-transparent to-[#EAE7E1]/80 pointer-events-none" />
+    <section className="min-h-screen relative overflow-hidden bg-[#EAE7E1]">
+      <Carousel
+        plugins={[plugin.current]}
+        className="w-full h-screen"
+        opts={{
+          loop: true,
+          duration: 30, // Smooth transition
+        }}
+      >
+        <CarouselContent className="-ml-0 h-screen">
+          {CAROUSEL_IMAGES.map(({ src, alt }) => (
+            <CarouselItem key={alt} className="pl-0 relative h-screen w-full">
+              <div className="absolute inset-0">
+                <img
+                  src={src}
+                  alt={alt}
+                  className="w-full h-full object-cover transition-all duration-1000 grayscale-0 md:grayscale hover:grayscale-0 opacity-85 blur-xxs"
+                />
+              </div>
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+        
+        {/* Subtle Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#EAE7E1] via-transparent to-[#EAE7E1]/80 pointer-events-none z-10" />
+        
+        <CarouselPrevious className="left-8 z-20 h-12 w-12 bg-white/10 backdrop-blur-md border-white/20 text-neutral-900 hover:bg-white/30 [&_svg]:h-8 [&_svg]:w-8" />
+        <CarouselNext className="right-8 z-20 h-12 w-12 bg-white/10 backdrop-blur-md border-white/20 text-neutral-900 hover:bg-white/30 [&_svg]:h-8 [&_svg]:w-8" />
+      </Carousel>
+      
+      {/* Centered Overlay Links */}
+      <div className="absolute inset-0 z-30 flex items-center justify-center pointer-events-none">
+        <div className="grid grid-cols-2 md:flex md:flex-wrap justify-items-center items-center justify-center gap-x-12 gap-y-8 md:gap-16 lg:gap-24 px-8 pointer-events-auto text-center">
+          {[
+            { label: 'Work', path: '/work' },
+            { label: 'Insights', path: '#' },
+            { label: 'About', path: '/about' },
+            { label: 'Contact', path: '/contact' },
+          ].map((link) => (
+            <Link
+              key={link.label}
+              to={link.path}
+              className="font-['Playfair_Display'] text-lg md:text-4xl lg:text-5xl text-white hover:text-[#C05A3E] transition-all duration-500 no-underline drop-shadow-md italic"
+            >
+              {link.label}
+            </Link>
+          ))}
+        </div>
       </div>
 
-      {/* Carousel Controls */}
-      <button
-        onClick={handlePrev}
-        className="absolute inset-y-0 left-0 z-20 flex items-center px-4 md:px-8 group"
-      >
-        <div className="p-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[#1A1A1A]/60 group-hover:text-[#C05A3E] group-hover:bg-white/30 transition-all duration-300">
-          <span className="material-symbols-outlined text-4xl font-extralight group-hover:scale-110 transition-transform">
-            chevron_left
-          </span>
-        </div>
-      </button>
-      <button
-        onClick={handleNext}
-        className="absolute inset-y-0 right-0 z-20 flex items-center px-4 md:px-8 group"
-      >
-        <div className="p-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[#1A1A1A]/60 group-hover:text-[#C05A3E] group-hover:bg-white/30 transition-all duration-300">
-          <span className="material-symbols-outlined text-4xl font-extralight group-hover:scale-110 transition-transform">
-            chevron_right
-          </span>
-        </div>
-      </button>
-
-      {/* Hero Content */}
-      <div className="max-w-screen-2xl mx-auto w-full relative z-10">
-        <div className="text-[10px] uppercase tracking-[0.5em] text-[#C05A3E] mb-8 font-[Inter]">
-          The Studio of Silence
-        </div>
-
-        <h1 className="font-['Playfair_Display'] italic text-5xl md:text-8xl lg:text-9xl leading-[1.1] text-[#1A1A1A] max-w-5xl tracking-tight mb-12">
-          Designing Spaces That{' '}
-          <span className="text-[#C05A3E]">Speak Quietly.</span>
-        </h1>
-
-        <div className="flex flex-col md:flex-row md:items-end gap-12">
-          <p className="text-[#666666] text-lg md:text-xl max-w-md leading-relaxed">
-            Architecture, interiors, and spatial experiences crafted with
-            intention and monolithic presence.
-          </p>
-          <div className="flex gap-4">
-            <a
-              href="#projects"
-              className="px-10 py-4 bg-[#C05A3E] text-white font-[Inter] text-xs uppercase tracking-[0.2em] font-bold hover:bg-[#A54B32] transition-all duration-500"
-            >
-              View Project
-            </a>
-            <a
-              href="#contact"
-              className="px-10 py-4 border border-[#1A1A1A]/20 text-[#1A1A1A] font-[Inter] text-xs uppercase tracking-[0.2em] hover:bg-[#1A1A1A]/5 transition-all duration-500"
-            >
-              Explore Space
-            </a>
-          </div>
-        </div>
-      </div>
+      {/* Hero Content - REMOVED per user request */}
     </section>
   )
 }
