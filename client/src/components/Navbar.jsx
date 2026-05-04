@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { Menu, X } from 'lucide-react'
+import logo from '../assets/Images/logo/logo.svg'
 
 const NAV_LINKS = [
   { path: '/', label: 'Home' },
@@ -35,10 +36,10 @@ export default function Navbar() {
         {/* Logo */}
         <Link 
           to="/" 
-          className="text-xl font-black tracking-tighter text-[#1A1A1A] no-underline z-50"
+          className="z-50 flex items-center"
           onClick={() => setIsOpen(false)}
         >
-          SLA
+          <img src={logo} alt="SLA Logo" className="h-10 w-auto" />
         </Link>
 
         {/* Desktop Links */}

@@ -18,8 +18,8 @@ export default function App() {
       {/* Custom circular cursor */}
       <CustomCursor />
 
-      {/* Grain Overlay */}
-      <div className="grain-overlay" aria-hidden="true" />
+       {/* Grain Overlay */}
+      <div className="grain-overlay" aria-hidden="true" /> 
 
       {/* Navigation */}
       <Navbar />

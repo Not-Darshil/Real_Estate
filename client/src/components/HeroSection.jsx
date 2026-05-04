@@ -12,13 +12,13 @@ import { Link } from 'react-router-dom'
 import slide1 from '../assets/Images/front_page_sliding/01.jpg'
 import slide2 from '../assets/Images/front_page_sliding/02.jpeg'
 import slide3 from '../assets/Images/front_page_sliding/03.jpg'
-import slide4 from '../assets/Images/front_page_sliding/04.jpg'
+// import slide4 from '../assets/Images/front_page_sliding/04.jpg'
 
 const CAROUSEL_IMAGES = [
   { src: slide1, alt: 'Architectural Texture' },
   { src: slide2, alt: 'Monolithic Facade' },
   { src: slide3, alt: 'Concrete Structure' },
-  { src: slide4, alt: 'Desert Minimalist' },
+  // { src: slide4, alt: 'Desert Minimalist' },
 ]
 
 export default function HeroSection() {
@@ -63,13 +63,13 @@ export default function HeroSection() {
           {[
             { label: 'Work', path: '/work' },
             { label: 'Insights', path: '#' },
+            { label: 'Team', path: '#' },
             { label: 'About', path: '/about' },
-            { label: 'Contact', path: '/contact' },
           ].map((link) => (
             <Link
               key={link.label}
               to={link.path}
-              className="font-['Playfair_Display'] text-lg md:text-4xl lg:text-5xl text-white hover:text-[#C05A3E] transition-all duration-500 no-underline drop-shadow-md italic"
+              className="font-['Playfair_Display'] text-lg md:text-4xl lg:text-5xl text-white hover:text-[#C05A3E] transition-all duration-500 no-underline drop-shadow-md"
             >
               {link.label}
             </Link>

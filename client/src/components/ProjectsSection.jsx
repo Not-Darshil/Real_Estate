@@ -154,9 +154,6 @@ export default function ProjectsSection() {
           <h2 className="font-['Playfair_Display'] text-4xl italic text-[#1A1A1A]">
             Selected Works
           </h2>
-          <span className="font-[Inter] text-[10px] uppercase tracking-[0.3em] text-neutral-400">
-            Portfolio — 2024
-          </span>
         </div>
 
         {/* Grid */}
@@ -176,7 +173,7 @@ export default function ProjectsSection() {
               onClick={() => setShowAll(true)}
               className="px-12 py-5 border border-on-surface/20 text-on-surface font-[Inter] text-xs uppercase tracking-[0.4em] hover:bg-[#C05A3E] hover:text-white hover:border-[#C05A3E] transition-all duration-500 font-bold"
             >
-              SLA Projects +
+              More Projects +
             </button>
           </div>
         )}

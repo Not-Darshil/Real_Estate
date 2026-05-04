@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="70 310 320 70">
+  <style>
+    .main {
+      fill: #000000;
+      font-family: Calibri, sans-serif;
+      font-size: 30px;
+    }
+    .line {
+      stroke: #000000;
+      stroke-width: 2;
+    }
+  </style>
+
+  <!-- Text -->
+  <text x="75" y="350" class="main">
+    SLEEK LINE ARCHITECTS
+  </text>
+
+  <!-- Horizontal line -->
+  <line x1="212" y1="360" x2="387" y2="360" class="line" />
+
+  <!-- Vertical line -->
+  <line x1="370" y1="316" x2="370" y2="373" class="line" />
+
+</svg>
