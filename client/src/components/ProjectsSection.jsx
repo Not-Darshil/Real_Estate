@@ -57,17 +57,39 @@ function ProjectCard({ id, title, location, category, type, images, offset }) {
 
 export default function ProjectsSection() {
   const [showAll, setShowAll] = useState(false)
+  const [activeFilter, setActiveFilter] = useState('All')
   
-  const displayedProjects = showAll ? PROJECTS : PROJECTS.slice(0, 4)
+  const CATEGORIES = ['All', 'Commercial', 'Hospitality', 'Residential', 'Retail', 'Others']
+
+  const filteredProjects = activeFilter === 'All' 
+    ? PROJECTS 
+    : PROJECTS.filter(p => p.category === activeFilter)
+
+  const displayedProjects = showAll ? filteredProjects : filteredProjects.slice(0, 4)
 
   return (
     <section className="py-32 px-8 bg-[#FAFAF7]" id="projects">
       <div className="max-w-screen-2xl mx-auto">
-        {/* Header */}
-        <div className="flex justify-between items-end mb-20 border-b border-black/5 pb-10">
-          <h2 className="font-['Playfair_Display'] text-4xl italic text-[#1A1A1A]">
-            Selected Works
-          </h2>
+        {/* Filter Navbar */}
+        <div className="mb-20 border-b border-black/5 pb-10">
+          <div className="flex flex-wrap gap-y-6 gap-x-8 md:gap-12">
+            {CATEGORIES.map(category => (
+              <button
+                key={category}
+                onClick={() => {
+                  setActiveFilter(category)
+                  setShowAll(false)
+                }}
+                className={`font-[Inter] text-xs uppercase tracking-widest transition-all duration-300 pb-2 border-b-2 ${
+                  activeFilter === category 
+                    ? 'text-[#C05A3E] border-[#C05A3E] font-bold'
+                    : 'text-neutral-400 hover:text-[#1A1A1A] border-transparent'
+                }`}
+              >
+                {category}
+              </button>
+            ))}
+          </div>
         </div>
 
         {/* Grid */}
@@ -81,7 +103,7 @@ export default function ProjectsSection() {
         </div>
 
         {/* Show More Button */}
-        {!showAll && PROJECTS.length > 4 && (
+        {!showAll && filteredProjects.length > 4 && (
           <div className="mt-24 flex justify-center">
             <button
               onClick={() => setShowAll(true)}

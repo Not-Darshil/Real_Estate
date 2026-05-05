@@ -1,9 +1,10 @@
-import { useParams, Navigate } from 'react-router-dom'
+import { useParams, Navigate, useNavigate } from 'react-router-dom'
 import { PROJECTS } from '../data/projects'
 import { useEffect } from 'react'
 
 export default function ProjectDetail() {
   const { id } = useParams()
+  const navigate = useNavigate()
   const project = PROJECTS.find(p => p.id === parseInt(id))
 
   useEffect(() => {
@@ -17,6 +18,15 @@ export default function ProjectDetail() {
   return (
     <div className="pt-32 pb-40 px-8 bg-[#FAFAF7] min-h-screen">
       <div className="max-w-screen-2xl mx-auto">
+        {/* Back Button */}
+        <button 
+          onClick={() => navigate(-1)}
+          className="mb-12 flex items-center gap-2 font-[Inter] text-xs uppercase tracking-[0.3em] text-neutral-400 hover:text-[#C05A3E] transition-colors"
+        >
+          <span className="material-symbols-outlined text-sm">arrow_back</span>
+          Back to Projects
+        </button>
+
         {/* Header */}
         <div className="mb-24 md:mb-32">
           <h1 className="font-['Playfair_Display'] text-5xl md:text-7xl text-[#1A1A1A] mb-8 tracking-tight uppercase">
