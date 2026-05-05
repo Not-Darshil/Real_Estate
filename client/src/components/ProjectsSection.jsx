@@ -1,96 +1,9 @@
 import { useState, useEffect } from 'react'
 
-// Cabin & Co
-import cabin_co_1 from '../assets/Images/COMMERCIAL/CABIN & CO/H1_Interactive LightMix copy.jpg'
-import cabin_co_2 from '../assets/Images/COMMERCIAL/CABIN & CO/H2_Interactive LightMix copy 2.jpg'
-import cabin_co_3 from '../assets/Images/COMMERCIAL/CABIN & CO/H3_Interactive LightMix copy.jpg'
+import { Link } from 'react-router-dom'
+import { PROJECTS } from '../data/projects'
 
-// S Pal
-import spal_1 from '../assets/Images/COMMERCIAL/S PAL BUSINESS PARK OFFICE GURGAON/CONFRENCE.jpg'
-import spal_2 from '../assets/Images/COMMERCIAL/S PAL BUSINESS PARK OFFICE GURGAON/V1.jpg'
-import spal_3 from '../assets/Images/COMMERCIAL/S PAL BUSINESS PARK OFFICE GURGAON/V2.jpg'
-
-// Primark
-import primark_1 from '../assets/Images/COMMERCIAL/primark office bhopal/C6_Interactive LightMix.jpg'
-import primark_2 from '../assets/Images/COMMERCIAL/primark office bhopal/t1_Interactive LightMix.jpg'
-import primark_3 from '../assets/Images/COMMERCIAL/primark office bhopal/t2_Interactive LightMix.jpg'
-
-// Hotel (Only 1)
-import hotel_1 from '../assets/Images/HOSPITALITY/SUNEL GUPTA HOTEL BADAUN/K3_Interactive LightMix copy.jpg'
-
-// Farm House (Only 1)
-import farm_house_1 from '../assets/Images/RESIDENCE/FARM HOUSE/c4_Interactive LightMix.jpg'
-
-// Farm House Interior
-import farm_house_int_1 from '../assets/Images/RESIDENCE/FARM HOUSE INTERIOR/C2_Interactive LightMix.jpg'
-import farm_house_int_2 from '../assets/Images/RESIDENCE/FARM HOUSE INTERIOR/1.jpg'
-import farm_house_int_3 from '../assets/Images/RESIDENCE/FARM HOUSE INTERIOR/2.jpg'
-
-// Looks Salon
-import looks_salon_1 from '../assets/Images/RETAIL/LOOKS SALON/1.jpg'
-import looks_salon_2 from '../assets/Images/RETAIL/LOOKS SALON/2.jpg'
-import looks_salon_3 from '../assets/Images/RETAIL/LOOKS SALON/3.jpg'
-
-const PROJECTS = [
-  {
-    id: 1,
-    title: 'CABIN & CO',
-    location: 'Office / Commercial',
-    type: 'Workspace',
-    images: [cabin_co_1, cabin_co_2, cabin_co_3],
-    offset: false,
-  },
-  {
-    id: 2,
-    title: 'S PAL BUSINESS PARK',
-    location: 'Gurgaon / Commercial',
-    type: 'Business Park',
-    images: [spal_1, spal_2, spal_3],
-    offset: true,
-  },
-  {
-    id: 3,
-    title: 'PRIMARK OFFICE',
-    location: 'Bhopal / Commercial',
-    type: 'Office Interior',
-    images: [primark_1, primark_2, primark_3],
-    offset: false,
-  },
-  {
-    id: 4,
-    title: 'SUNEL GUPTA HOTEL',
-    location: 'Badaun / Hospitality',
-    type: 'Institutional',
-    images: [hotel_1],
-    offset: true,
-  },
-  {
-    id: 5,
-    title: 'FARM HOUSE',
-    location: 'Residence',
-    type: 'Modern Living',
-    images: [farm_house_1],
-    offset: false,
-  },
-  {
-    id: 6,
-    title: 'FARM HOUSE INTERIOR',
-    location: 'Residence',
-    type: 'Interior Design',
-    images: [farm_house_int_1, farm_house_int_2, farm_house_int_3],
-    offset: true,
-  },
-  {
-    id: 7,
-    title: 'LOOKS SALON',
-    location: 'Retail',
-    type: 'Beauty & Wellness',
-    images: [looks_salon_1, looks_salon_2, looks_salon_3],
-    offset: false,
-  },
-]
-
-function ProjectCard({ title, location, type, images, offset }) {
+function ProjectCard({ id, title, location, category, type, images, offset }) {
   const [imgIndex, setImgIndex] = useState(0)
   const [isHovered, setIsHovered] = useState(false)
 
@@ -107,8 +20,9 @@ function ProjectCard({ title, location, type, images, offset }) {
   }, [isHovered, images.length])
 
   return (
-    <div
-      className={`group cursor-pointer ${offset ? 'md:mt-32' : ''}`}
+    <Link
+      to={`/project/${id}`}
+      className={`group block cursor-pointer no-underline ${offset ? 'md:mt-32' : ''}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -130,14 +44,14 @@ function ProjectCard({ title, location, type, images, offset }) {
             {title}
           </h3>
           <p className="font-[Inter] text-[10px] uppercase tracking-widest text-[#666666]">
-            {location} / {type}
+            {location} / {category}
           </p>
         </div>
         <span className="material-symbols-outlined text-[#C05A3E] opacity-0 group-hover:opacity-100 transition-opacity">
           arrow_outward
         </span>
       </div>
-    </div>
+    </Link>
   )
 }
 
